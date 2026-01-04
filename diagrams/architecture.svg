@@ -1,50 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="820" viewBox="0 0 1400 820">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
   <defs>
     <style>
       .page { fill: #ffffff; }
-      .groupTitle { font: 700 16px "Segoe UI", Arial, sans-serif; fill: #111827; }
-      .nodeTitle { font: 700 15px "Segoe UI", Arial, sans-serif; fill: #111827; }
-      .nodeSub { font: 400 12.5px "Segoe UI", Arial, sans-serif; fill: #374151; }
-      .small { font: 600 12px "Segoe UI", Arial, sans-serif; fill: #374151; }
-      .box { fill: #ffffff; stroke: #d1d5db; stroke-width: 1.5; rx: 14; }
-      .groupBox { fill: #f9fafb; stroke: #e5e7eb; stroke-width: 1.5; rx: 18; }
+
+      /* Typography (Visio-like) */
+      .title { font: 700 18px "Segoe UI", Arial, sans-serif; fill: #0f172a; }
+      .section { font: 700 14px "Segoe UI", Arial, sans-serif; fill: #0f172a; }
+      .nodeTitle { font: 700 14px "Segoe UI", Arial, sans-serif; fill: #0f172a; }
+      .nodeSub { font: 400 12px "Segoe UI", Arial, sans-serif; fill: #334155; }
+      .label { font: 600 11.5px "Segoe UI", Arial, sans-serif; fill: #0f172a; }
+      .muted { font: 600 11px "Segoe UI", Arial, sans-serif; fill: #475569; }
+
+      /* Containers */
+      .boundary { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; rx: 16; }
+      .boundaryAzure { fill: #ffffff; stroke: #86b7e6; stroke-width: 1.8; rx: 16; }
+      .headerOnPrem { fill: #f1f5f9; stroke: #cbd5e1; stroke-width: 0; }
+      .headerAzure { fill: #eaf4ff; stroke: #86b7e6; stroke-width: 0; }
+
+      /* Nodes */
+      .card { fill: #ffffff; stroke: #d1d5db; stroke-width: 1.4; rx: 14; filter: url(#shadow); }
+      .cardStrong { fill: #ffffff; stroke: #94a3b8; stroke-width: 1.6; rx: 14; filter: url(#shadow); }
+
+      /* Connectors */
       .arrow { stroke: #334155; stroke-width: 2.2; fill: none; marker-end: url(#arrowHead); }
       .arrowThin { stroke: #334155; stroke-width: 1.8; fill: none; marker-end: url(#arrowHead); }
-      .dash { stroke-dasharray: 6 6; }
-      .label { font: 600 12px "Segoe UI", Arial, sans-serif; fill: #111827; }
+      .dash { stroke-dasharray: 7 6; }
+      .dashThin { stroke-dasharray: 6 6; }
+
+      /* Pills / callouts */
       .pill { fill: #eef2ff; stroke: #c7d2fe; stroke-width: 1; rx: 10; }
-      .pillText { font: 700 11.5px "Segoe UI", Arial, sans-serif; fill: #3730a3; }
+      .pillText { font: 700 11px "Segoe UI", Arial, sans-serif; fill: #3730a3; }
+      .callout { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1.2; rx: 12; filter: url(#shadow); }
     </style>
 
     <marker id="arrowHead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
       <path d="M0,0 L10,3 L0,6 Z" fill="#334155" />
     </marker>
+
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
   </defs>
 
   <!-- Background -->
-  <rect class="page" x="0" y="0" width="1400" height="820" />
+  <rect class="page" x="0" y="0" width="1600" height="900" />
 
   <!-- Title -->
-  <text x="40" y="44" class="groupTitle">Azure Entra ID Authentication Architecture (Cloud, On-Prem, API, Dedicated SQL per Customer)</text>
+  <text x="40" y="44" class="title">Azure Entra ID Authentication Architecture (Cloud, On-Prem, API Backend, Dedicated Azure SQL per Customer)</text>
 
-  <!-- ===== Nodes ===== -->
-
-  <!-- Users -->
-  <rect class="box" x="40" y="310" width="240" height="200" />
-  <!-- simple user glyph -->
-  <g transform="translate(70 350)">
-    <circle cx="40" cy="28" r="22" fill="#93c5fd"/>
-    <path d="M12,92 C18,66 62,66 68,92 L68,102 L12,102 Z" fill="#60a5fa"/>
-  </g>
-  <text x="150" y="375" class="nodeTitle">Users</text>
-  <text x="150" y="398" class="nodeSub">Employees, partners</text>
-  <text x="150" y="420" class="nodeSub">and service identities</text>
-
-  <!-- Identity & Access -->
-  <rect class="groupBox" x="500" y="70" width="400" height="180" />
-  <text x="520" y="100" class="groupTitle">Identity and Access</text>
-  <rect class="box" x="530" y="118" width="340" height="110" />
-  <g transform="translate(555 140) scale(3.6)">
+  <!-- ===========================
+       Top: Identity Provider
+       =========================== -->
+  <rect class="cardStrong" x="560" y="70" width="480" height="110" />
+  <g transform="translate(590 96) scale(4.0)">
     <!-- Entra icon (embedded) -->
     <defs>
       <linearGradient id="entra_g1" x1="7.697" y1="779.168" x2="14.082" y2="786.631" gradientTransform="translate(0 791.516) scale(1 -1)" gradientUnits="userSpaceOnUse">
@@ -71,17 +79,65 @@
       <path d="m9.001,16.939c.287,0,.574-.078.824-.234l7.499-4.688c.751-.469.902-1.457.323-2.111L10.148,1.445c-.3-.338-.723-.507-1.147-.507v16.001Z" fill="url(#entra_g4)" fill-opacity=".5" opacity=".5" />
     </g>
   </g>
-  <text x="660" y="156" class="nodeTitle">Microsoft Entra ID</text>
-  <text x="660" y="178" class="nodeSub">OAuth2 and OpenID Connect</text>
-  <text x="660" y="200" class="nodeSub">Issues JWT tokens, enforces policies</text>
+  <text x="690" y="108" class="nodeTitle">Microsoft Entra ID</text>
+  <text x="690" y="130" class="nodeSub">OAuth 2.0 / OpenID Connect. Issues JWT access tokens and ID tokens.</text>
+  <text x="690" y="152" class="nodeSub">Enforces Conditional Access, MFA, and app role assignments.</text>
 
-  <!-- Applications -->
-  <rect class="groupBox" x="290" y="250" width="760" height="390" />
-  <text x="310" y="280" class="groupTitle">Applications and Services</text>
+  <!-- ===========================
+       Boundaries (Visio-style)
+       =========================== -->
 
-  <!-- Cloud app -->
-  <rect class="box" x="320" y="305" width="340" height="150" />
-  <g transform="translate(345 332) scale(3.6)">
+  <!-- On-Prem boundary -->
+  <rect class="boundary" x="40" y="210" width="430" height="650" />
+  <rect class="headerOnPrem" x="40" y="210" width="430" height="44" rx="16" />
+  <text x="60" y="238" class="section">On-Premises</text>
+
+  <!-- Azure boundary -->
+  <rect class="boundaryAzure" x="500" y="210" width="1060" height="650" />
+  <rect class="headerAzure" x="500" y="210" width="1060" height="44" rx="16" />
+  <text x="520" y="238" class="section">Azure Subscription / Landing Zone</text>
+
+  <!-- ===========================
+       On-Prem components
+       =========================== -->
+
+  <!-- Users (on-prem / corporate users) -->
+  <rect class="card" x="80" y="290" width="350" height="140" />
+  <g transform="translate(105 322)">
+    <circle cx="34" cy="24" r="18" fill="#93c5fd"/>
+    <path d="M10,78 C14,56 54,56 58,78 L58,88 L10,88 Z" fill="#60a5fa"/>
+  </g>
+  <text x="180" y="330" class="nodeTitle">Users</text>
+  <text x="180" y="352" class="nodeSub">Employees, partners, service identities</text>
+  <text x="180" y="374" class="nodeSub">Interactive sign-in and delegated access</text>
+
+  <!-- On-Prem App / Service -->
+  <rect class="card" x="80" y="470" width="350" height="160" />
+  <g transform="translate(105 505) scale(4.0)">
+    <!-- Local Network Gateways icon (embedded) -->
+    <defs>
+      <linearGradient id="onprem_g1" x1="9" y1="17.79" x2="9" y2="1.82" gradientTransform="translate(9 -3.73) rotate(45)" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#258277" />
+        <stop offset="0.42" stop-color="#49a498" />
+        <stop offset="0.78" stop-color="#60baad" />
+        <stop offset="1" stop-color="#68c2b5" />
+      </linearGradient>
+    </defs>
+    <rect x="2.82" y="2.82" width="12.35" height="12.35" rx="0.57" transform="translate(-3.73 9) rotate(-45)" fill="url(#onprem_g1)" />
+    <path d="M7.05,4.68,8.93,2.8a.1.1,0,0,1,.14,0L11,4.68a.09.09,0,0,1-.07.16H9.78a.1.1,0,0,0-.1.1V7.37a.09.09,0,0,1-.09.09H8.42a.09.09,0,0,1-.1-.09V4.94a.1.1,0,0,0-.09-.1H7.12A.1.1,0,0,1,7.05,4.68ZM11,13.32,9.07,15.2a.1.1,0,0,1-.14,0L7.05,13.32a.1.1,0,0,1,.07-.16H8.23a.1.1,0,0,0,.09-.1V10.63a.09.09,0,0,1,.1-.09H9.59a.09.09,0,0,1,.09.09v2.43a.1.1,0,0,0,.1.1h1.1A.09.09,0,0,1,11,13.32ZM5.34,10.84V9.74a.11.11,0,0,0-.1-.1H2.81a.1.1,0,0,1-.1-.09V8.38a.11.11,0,0,1,.1-.1H5.24a.1.1,0,0,0,.1-.09V7.08A.09.09,0,0,1,5.5,7L7.38,8.9a.09.09,0,0,1,0,.13L5.5,10.91A.09.09,0,0,1,5.34,10.84Zm7.32-3.76V8.19a.1.1,0,0,0,.1.09h2.43a.11.11,0,0,1,.1.1V9.55a.1.1,0,0,1-.1.09H12.76a.11.11,0,0,0-.1.1v1.1a.09.09,0,0,1-.16.07L10.62,9a.09.09,0,0,1,0-.13L12.5,7A.09.09,0,0,1,12.66,7.08Z" fill="#fff" />
+  </g>
+  <text x="180" y="510" class="nodeTitle">On-Prem App / Service</text>
+  <text x="180" y="532" class="nodeSub">Authenticates users with Entra ID (OIDC)</text>
+  <text x="180" y="554" class="nodeSub">Calls Azure API using JWT access token</text>
+  <text x="180" y="576" class="nodeSub">Transport secured with TLS</text>
+
+  <!-- ===========================
+       Azure components
+       =========================== -->
+
+  <!-- Cloud App -->
+  <rect class="card" x="540" y="290" width="420" height="170" />
+  <g transform="translate(565 322) scale(4.0)">
     <!-- App Services icon (embedded) -->
     <defs>
       <radialGradient id="appsvc_g1" cx="13428.81" cy="3518.86" r="56.67" gradientTransform="translate(-2005.33 -518.83) scale(0.15)" gradientUnits="userSpaceOnUse">
@@ -108,33 +164,15 @@
     <circle cx="10.13" cy="13.67" r="1.78" fill="url(#appsvc_g3)" />
     <circle cx="14.18" cy="9.27" r="1.89" fill="url(#appsvc_g4)" />
   </g>
-  <text x="450" y="350" class="nodeTitle">Cloud App / Service</text>
-  <text x="450" y="372" class="nodeSub">Web app, SPA, mobile, worker</text>
-  <text x="450" y="394" class="nodeSub">Obtains tokens from Entra ID</text>
+  <text x="650" y="330" class="nodeTitle">Cloud App / Service</text>
+  <text x="650" y="352" class="nodeSub">Web app / SPA / mobile / worker</text>
+  <text x="650" y="374" class="nodeSub">Requests tokens from Entra ID (OAuth2/OIDC)</text>
+  <text x="650" y="396" class="nodeSub">Calls API using Bearer JWT over TLS</text>
 
-  <!-- On-Prem app -->
-  <rect class="box" x="320" y="475" width="340" height="150" />
-  <g transform="translate(345 502) scale(3.6)">
-    <!-- Local Network Gateways icon (embedded) -->
-    <defs>
-      <linearGradient id="onprem_g1" x1="9" y1="17.79" x2="9" y2="1.82" gradientTransform="translate(9 -3.73) rotate(45)" gradientUnits="userSpaceOnUse">
-        <stop offset="0" stop-color="#258277" />
-        <stop offset="0.42" stop-color="#49a498" />
-        <stop offset="0.78" stop-color="#60baad" />
-        <stop offset="1" stop-color="#68c2b5" />
-      </linearGradient>
-    </defs>
-    <rect x="2.82" y="2.82" width="12.35" height="12.35" rx="0.57" transform="translate(-3.73 9) rotate(-45)" fill="url(#onprem_g1)" />
-    <path d="M7.05,4.68,8.93,2.8a.1.1,0,0,1,.14,0L11,4.68a.09.09,0,0,1-.07.16H9.78a.1.1,0,0,0-.1.1V7.37a.09.09,0,0,1-.09.09H8.42a.09.09,0,0,1-.1-.09V4.94a.1.1,0,0,0-.09-.1H7.12A.1.1,0,0,1,7.05,4.68ZM11,13.32,9.07,15.2a.1.1,0,0,1-.14,0L7.05,13.32a.1.1,0,0,1,.07-.16H8.23a.1.1,0,0,0,.09-.1V10.63a.09.09,0,0,1,.1-.09H9.59a.09.09,0,0,1,.09.09v2.43a.1.1,0,0,0,.1.1h1.1A.09.09,0,0,1,11,13.32ZM5.34,10.84V9.74a.11.11,0,0,0-.1-.1H2.81a.1.1,0,0,1-.1-.09V8.38a.11.11,0,0,1,.1-.1H5.24a.1.1,0,0,0,.1-.09V7.08A.09.09,0,0,1,5.5,7L7.38,8.9a.09.09,0,0,1,0,.13L5.5,10.91A.09.09,0,0,1,5.34,10.84Zm7.32-3.76V8.19a.1.1,0,0,0,.1.09h2.43a.11.11,0,0,1,.1.1V9.55a.1.1,0,0,1-.1.09H12.76a.11.11,0,0,0-.1.1v1.1a.09.09,0,0,1-.16.07L10.62,9a.09.09,0,0,1,0-.13L12.5,7A.09.09,0,0,1,12.66,7.08Z" fill="#fff" />
-  </g>
-  <text x="450" y="520" class="nodeTitle">On-Prem App / Service</text>
-  <text x="450" y="542" class="nodeSub">Internal app hosted on premises</text>
-  <text x="450" y="564" class="nodeSub">Obtains tokens from Entra ID</text>
-
-  <!-- API backend -->
-  <rect class="box" x="720" y="380" width="300" height="210" />
-  <g transform="translate(745 410) scale(3.6)">
-    <!-- API Management icon (embedded) -->
+  <!-- API Backend -->
+  <rect class="cardStrong" x="1000" y="290" width="520" height="240" />
+  <g transform="translate(1025 325) scale(4.0)">
+    <!-- API Management icon (used as API facade) -->
     <defs>
       <linearGradient id="api_g1" x1="9" y1="16.82" x2="9" y2="1.18" gradientUnits="userSpaceOnUse">
         <stop offset="0" stop-color="#198ab3" />
@@ -152,18 +190,20 @@
     <path d="M14.18,5.89A4.85,4.85,0,0,0,9.23,1.18,5,5,0,0,0,4.48,4.47,4.61,4.61,0,0,0,.5,9,4.67,4.67,0,0,0,5.29,13.5a3,3,0,0,0,.42,0h1.2a1.47,1.47,0,0,1-.11-.56v0A1.51,1.51,0,0,1,7,12.21H5.6l-.31,0A3.41,3.41,0,0,1,1.77,9,3.33,3.33,0,0,1,4.68,5.73l.76-.12.25-.73A3.73,3.73,0,0,1,9.23,2.45,3.6,3.6,0,0,1,12.91,5.9V7L14,7.15a2.59,2.59,0,0,1,2.26,2.49,2.63,2.63,0,0,1-2.62,2.54h-.15l-.08,0h-1A3.92,3.92,0,0,0,8.54,9a.64.64,0,1,0,0,1.27,2.65,2.65,0,0,1,0,5.29.64.64,0,1,0,0,1.27,3.92,3.92,0,0,0,3.87-3.34h1.05a.64.64,0,0,0,.2,0A3.91,3.91,0,0,0,17.5,9.64,3.86,3.86,0,0,0,14.18,5.89Z" fill="url(#api_g1)" />
     <rect x="6.8" y="11.35" width="3.12" height="3.12" rx="1.54" fill="url(#api_g2)" />
   </g>
-  <text x="845" y="432" class="nodeTitle">API Backend</text>
-  <text x="845" y="454" class="nodeSub">Validates JWT tokens</text>
-  <text x="845" y="476" class="nodeSub">Authorizes via roles and claims</text>
-  <text x="745" y="518" class="small">Tenant isolation</text>
-  <rect class="pill" x="745" y="528" width="125" height="24" />
-  <text x="757" y="545" class="pillText">Tenant ID (tid)</text>
-  <rect class="pill" x="878" y="528" width="132" height="24" />
-  <text x="890" y="545" class="pillText">Claims / roles</text>
+  <text x="1110" y="330" class="nodeTitle">API Backend</text>
+  <text x="1110" y="352" class="nodeSub">Validates JWT (issuer, audience, exp, signature via JWKS)</text>
+  <text x="1110" y="374" class="nodeSub">Authorization: scopes (scp) and app roles (roles)</text>
+  <text x="1110" y="396" class="nodeSub">Tenant isolation: tid claim + tenant routing</text>
+  <rect class="pill" x="1110" y="416" width="140" height="24" />
+  <text x="1122" y="432" class="pillText">Tenant ID (tid)</text>
+  <rect class="pill" x="1260" y="416" width="145" height="24" />
+  <text x="1272" y="432" class="pillText">Roles / scopes</text>
+  <rect class="pill" x="1410" y="416" width="90" height="24" />
+  <text x="1424" y="432" class="pillText">aud / iss</text>
 
-  <!-- Azure SQL per customer -->
-  <rect class="box" x="1060" y="380" width="300" height="210" />
-  <g transform="translate(1085 410) scale(3.6)">
+  <!-- Dedicated Azure SQL per customer -->
+  <rect class="card" x="1000" y="560" width="520" height="190" />
+  <g transform="translate(1025 590) scale(4.0)">
     <!-- Azure SQL icon (embedded, sanitized) -->
     <defs>
       <linearGradient id="sql_g1" x1="9.908" y1="15.943" x2="7.516" y2="2.383" gradientUnits="userSpaceOnUse">
@@ -174,49 +214,46 @@
     </defs>
     <g>
       <path d="M14.49,7.15A5.147,5.147,0,0,0,9.24,2.164,5.272,5.272,0,0,0,4.216,5.653,4.869,4.869,0,0,0,0,10.4a4.946,4.946,0,0,0,5.068,4.814H13.82A4.292,4.292,0,0,0,18,11.127,4.105,4.105,0,0,0,14.49,7.15Z" fill="url(#sql_g1)" />
-      <path d="M12.9,11.4V8H12v4.13h2.46V11.4ZM5.76,9.73a1.825,1.825,0,0,1-.51-.31.441.441,0,0,1-.12-.32.342.342,0,0,1,.15-.3.683.683,0,0,1,.42-.12,1.62,1.62,0,0,1,1,.29V8.11a2.58,2.58,0,0,0-1-.16,1.641,1.641,0,0,0-1.09.34,1.08,1.08,0,0,0-.42.89c0,.51.32.91,1,1.21a2.907,2.907,0,0,1,.62.36.419.419,0,0,1,.15.32.381.381,0,0,1-.16.31.806.806,0,0,1-.45.11,1.66,1.66,0,0,1-1.09-.42V12a2.173,2.173,0,0,0,1.07.24,1.877,1.877,0,0,0,1.18-.33A1.08,1.08,0,0,0,6.84,11a1.048,1.048,0,0,0-.25-.7A2.425,2.425,0,0,0,5.76,9.73ZM11,11.32A2.191,2.191,0,0,0,11,9a1.808,1.808,0,0,0-.7-.75,2,2,0,0,0-1-.26,2.112,2.112,0,0,0-1.08.27A1.856,1.856,0,0,0,7.49,9a2.465,2.465,0,0,0-.26,1.14,2.256,2.256,0,0,0,.24,1,1.766,1.766,0,0,0,.69.74,2.056,2.056,0,0,0,1,.3l.86,1h1.21L10,12.08A1.79,1.79,0,0,0,11,11.32Zm-1-.25a.941.941,0,0,1-.76.35.916.916,0,0,1-.76-.36,1.523,1.523,0,0,1-.29-1,1.529,1.529,0,0,1,.29-1,1,1,0,0,1,.78-.37.869.869,0,0,1,.75.37,1.619,1.619,0,0,1,.27,1A1.459,1.459,0,0,1,10,11.07Z" fill="#f2f2f2" />
+      <path d="M12.9,11.4V8H12v4.13h2.46V11.4Z" fill="#f2f2f2" />
     </g>
   </g>
-  <text x="1185" y="432" class="nodeTitle">Azure SQL</text>
-  <text x="1185" y="454" class="nodeSub">Dedicated database per customer</text>
-  <text x="1185" y="476" class="nodeSub">DB roles enforce least privilege</text>
-  <rect class="pill" x="1085" y="520" width="170" height="24" />
-  <text x="1097" y="537" class="pillText">Customer DB 1</text>
-  <rect class="pill" x="1085" y="552" width="170" height="24" />
-  <text x="1097" y="569" class="pillText">Customer DB 2</text>
-  <rect class="pill" x="1258" y="536" width="84" height="24" />
-  <text x="1274" y="553" class="pillText">DB N</text>
+  <text x="1110" y="600" class="nodeTitle">Azure SQL (Dedicated per Customer)</text>
+  <text x="1110" y="622" class="nodeSub">One database per tenant/customer for isolation and compliance boundaries</text>
+  <text x="1110" y="644" class="nodeSub">DB Roles enforce least privilege (read, write, admin)</text>
+  <rect class="pill" x="1110" y="662" width="170" height="24" />
+  <text x="1122" y="678" class="pillText">Customer DB 1</text>
+  <rect class="pill" x="1290" y="662" width="170" height="24" />
+  <text x="1302" y="678" class="pillText">Customer DB 2</text>
+  <rect class="pill" x="1110" y="692" width="120" height="24" />
+  <text x="1122" y="708" class="pillText">Customer DB N</text>
 
-  <!-- Security & Compliance -->
-  <rect class="groupBox" x="500" y="660" width="860" height="130" />
-  <text x="520" y="690" class="groupTitle">Security, Audit, and Compliance</text>
-  <rect class="box" x="530" y="706" width="380" height="70" />
-  <text x="550" y="732" class="nodeSub">TLS for all connections (HTTPS and SQL)</text>
-  <text x="550" y="754" class="nodeSub">Certificates and renewal monitoring</text>
-  <g transform="translate(845 716) scale(3.2)">
-    <!-- Certificates icon (embedded) -->
+  <!-- Key Vault (certificates / secrets) -->
+  <rect class="card" x="540" y="520" width="420" height="140" />
+  <g transform="translate(565 552) scale(4.0)">
+    <!-- Key Vault icon (embedded) -->
     <defs>
-      <linearGradient id="cert_g1" x1="9" y1="13.51" x2="9" y2="0.76" gradientUnits="userSpaceOnUse">
-        <stop offset="0" stop-color="#f78d1e" />
-        <stop offset="0.44" stop-color="#f8911e" />
-        <stop offset="0.85" stop-color="#f99c1d" />
-        <stop offset="1" stop-color="#faa21d" />
-      </linearGradient>
+      <radialGradient id="kv_g1" cx="9" cy="9" r="8.5" gradientUnits="userSpaceOnUse">
+        <stop offset="0.18" stop-color="#5ea0ef" />
+        <stop offset="1" stop-color="#0078d4" />
+      </radialGradient>
+      <radialGradient id="kv_g2" cx="38.95" cy="182.07" r="9.88" gradientTransform="translate(-28.71 -163.24) scale(0.94 0.94)" gradientUnits="userSpaceOnUse">
+        <stop offset="0.27" stop-color="#ffd70f" />
+        <stop offset="0.49" stop-color="#ffcb12" />
+        <stop offset="0.88" stop-color="#feac19" />
+        <stop offset="1" stop-color="#fea11b" />
+      </radialGradient>
     </defs>
-    <rect y="0.76" width="18" height="12.75" rx="0.6" fill="url(#cert_g1)" />
-    <rect x="1.05" y="1.88" width="15.9" height="10.5" rx="0.3" fill="#fff" />
-    <path d="M14.94,9.34a.29.29,0,0,1-.28.29H8.16a.29.29,0,0,1,0-.58h6.5a.28.28,0,0,1,.28.29" fill="#d15900" />
-    <path d="M14.94,7.54a.29.29,0,0,1-.28.29H8.16a.29.29,0,0,1,0-.58h6.5a.28.28,0,0,1,.28.29" fill="#d15900" />
-    <path d="M14.94,4.93a.28.28,0,0,1-.28.29H3.77a.29.29,0,1,1,0-.58H14.66a.28.28,0,0,1,.28.29" fill="#d15900" />
-    <path d="M5.13,12.69a2.52,2.52,0,0,1-3.37,0l-.21,4.19a.33.33,0,0,0,.57.25l1.3-1.32,1.31,1.33a.33.33,0,0,0,.57-.24Z" fill="#b31b1b" />
-    <ellipse cx="3.48" cy="10.54" rx="3.01" ry="3.02" fill="#e62323" />
-    <ellipse cx="3.48" cy="10.54" rx="2.29" ry="2.29" fill="#ffb34d" />
+    <path d="M9,.5A8.5,8.5,0,1,0,17.5,9,8.51,8.51,0,0,0,9,.5ZM9,16.34A7.34,7.34,0,1,1,16.34,9,7.34,7.34,0,0,1,9,16.34Z" fill="url(#kv_g1)" />
+    <circle cx="9" cy="9" r="7.34" fill="#fff" />
+    <path d="M13.44,7.33a1.84,1.84,0,0,0,0-2.59h0L10.29,1.58a1.83,1.83,0,0,0-2.58,0h0L4.56,4.74a1.84,1.84,0,0,0,0,2.59L7.18,10a.51.51,0,0,1,.15.36v4.88a.63.63,0,0,0,.18.44l1.2,1.2a.41.41,0,0,0,.58,0l1.16-1.16h0l.68-.68a.25.25,0,0,0,0-.34l-.49-.49a.27.27,0,0,1,0-.37l.49-.49a.25.25,0,0,0,0-.34l-.49-.49a.27.27,0,0,1,0-.37l.49-.49a.25.25,0,0,0,0-.34l-.68-.69v-.25Z" fill="url(#kv_g2)" />
   </g>
+  <text x="650" y="560" class="nodeTitle">Key Vault (Certificates)</text>
+  <text x="650" y="582" class="nodeSub">Stores TLS/SSL certificates and secrets</text>
+  <text x="650" y="604" class="nodeSub">Supports rotation and lifecycle monitoring</text>
 
-  <rect class="box" x="930" y="706" width="410" height="70" />
-  <text x="950" y="732" class="nodeSub">Audit: sign-in logs, app logs, DB audit</text>
-  <text x="950" y="754" class="nodeSub">Compliance evidence and retention policies</text>
-  <g transform="translate(1268 715) scale(3.2)">
+  <!-- Audit & Compliance -->
+  <rect class="card" x="540" y="680" width="420" height="170" />
+  <g transform="translate(565 712) scale(4.0)">
     <!-- Monitor icon (embedded) -->
     <defs>
       <radialGradient id="mon_g1" cx="5.72" cy="7.45" r="8.42" gradientTransform="translate(3.23 1.51) scale(1.01 1.01)" gradientUnits="userSpaceOnUse">
@@ -238,49 +275,87 @@
     <path d="M14.14,7a.45.45,0,0,0-.57-.25L9.45,8.41l.32.81,4.12-1.63A.44.44,0,0,0,14.14,7Z" fill="#f04049" />
     <ellipse cx="9" cy="9" rx="1.2" ry="1.2" fill="url(#mon_g2)" />
   </g>
+  <text x="650" y="720" class="nodeTitle">Audit and Compliance</text>
+  <text x="650" y="742" class="nodeSub">Entra sign-in logs and audit logs</text>
+  <text x="650" y="764" class="nodeSub">API access logs, security events, DB audit</text>
+  <text x="650" y="786" class="nodeSub">Retention policies and evidence for audits</text>
 
-  <!-- ===== Connections ===== -->
+  <!-- ===========================
+       Connectors (clear + labeled)
+       =========================== -->
 
-  <!-- Users to apps -->
-  <path class="arrow" d="M280 365 C 300 365, 300 365, 320 365" />
-  <text x="285" y="350" class="label">Access</text>
+  <!-- Users -> Cloud app (access) -->
+  <path class="arrow" d="M430 360 C 490 360, 510 360, 540 360" />
+  <text x="452" y="345" class="label">Access</text>
+  <text x="452" y="360" class="muted">HTTPS</text>
 
-  <path class="arrow" d="M280 455 C 300 455, 300 550, 320 550" />
-  <text x="285" y="520" class="label">Access</text>
+  <!-- Users -> On-Prem app -->
+  <path class="arrow" d="M255 430 C 255 450, 255 460, 255 470" />
+  <text x="270" y="452" class="label">Use app</text>
 
-  <!-- Apps to Entra -->
-  <path class="arrowThin" d="M490 305 C 520 260, 560 235, 600 228" />
-  <text x="475" y="265" class="label">Authorize</text>
+  <!-- Cloud app -> Entra (authorize) -->
+  <path class="arrowThin" d="M760 290 C 780 230, 820 200, 880 180" />
+  <text x="790" y="225" class="label">OAuth2 / OIDC</text>
 
-  <path class="arrowThin" d="M490 475 C 520 420, 560 300, 600 250" />
-  <text x="470" y="440" class="label">Authorize</text>
+  <!-- On-Prem app -> Entra (authorize) -->
+  <path class="arrowThin" d="M430 520 C 470 430, 540 300, 660 180" />
+  <text x="480" y="405" class="label">OAuth2 / OIDC</text>
 
-  <!-- Entra to apps -->
-  <path class="arrowThin" d="M700 228 C 660 250, 620 270, 610 305" />
-  <text x="665" y="262" class="label">JWT tokens</text>
+  <!-- Entra -> Cloud app (tokens) -->
+  <path class="arrowThin" d="M900 180 C 860 205, 820 240, 800 290" />
+  <text x="875" y="220" class="label">JWT tokens</text>
 
-  <path class="arrowThin" d="M750 250 C 700 300, 640 360, 610 475" />
-  <text x="700" y="320" class="label">JWT tokens</text>
+  <!-- Entra -> On-Prem app (tokens) -->
+  <path class="arrowThin" d="M700 180 C 610 240, 480 360, 430 500" />
+  <text x="575" y="260" class="label">JWT tokens</text>
 
-  <!-- Apps to API -->
-  <path class="arrow" d="M660 380 C 690 390, 700 400, 720 420" />
-  <text x="640" y="418" class="label">Bearer token over TLS</text>
+  <!-- Cloud app -> API -->
+  <path class="arrow" d="M960 375 C 980 375, 990 375, 1000 375" />
+  <text x="965" y="358" class="label">Bearer access token</text>
+  <text x="965" y="373" class="muted">JWT over TLS</text>
 
-  <path class="arrow" d="M660 545 C 690 535, 700 510, 720 480" />
-  <text x="640" y="510" class="label">Bearer token over TLS</text>
+  <!-- On-Prem app -> API -->
+  <path class="arrow" d="M430 560 C 560 560, 760 520, 1000 470" />
+  <text x="585" y="540" class="label">Bearer access token</text>
+  <text x="585" y="555" class="muted">JWT over TLS</text>
 
-  <!-- API to Entra for validation -->
-  <path class="arrowThin dash" d="M870 380 C 850 300, 820 250, 780 228" />
-  <text x="860" y="310" class="label">Validate token</text>
+  <!-- API -> Entra (token validation / keys) -->
+  <path class="arrowThin dash" d="M1240 290 C 1180 230, 1100 200, 1040 180" />
+  <text x="1185" y="235" class="label">Validate signature</text>
+  <text x="1185" y="250" class="muted">JWKS / issuer</text>
 
-  <!-- API to SQL -->
-  <path class="arrow" d="M1020 485 C 1040 485, 1040 485, 1060 485" />
-  <text x="1015" y="468" class="label">Tenant DB routing + TLS</text>
+  <!-- API -> SQL -->
+  <path class="arrow" d="M1260 530 C 1260 545, 1260 550, 1260 560" />
+  <text x="1280" y="548" class="label">Tenant DB routing</text>
+  <text x="1280" y="563" class="muted">TLS to Azure SQL</text>
 
-  <!-- Cross-cutting to security/compliance -->
-  <path class="arrowThin dash" d="M820 590 C 820 625, 820 635, 820 660" />
-  <path class="arrowThin dash" d="M600 625 C 600 640, 600 645, 600 660" />
-  <path class="arrowThin dash" d="M1210 590 C 1210 625, 1210 635, 1210 660" />
+  <!-- API -> Key Vault (certs/secrets) -->
+  <path class="arrowThin dash dashThin" d="M1120 530 C 1020 560, 900 580, 960 590" />
+  <text x="940" y="566" class="label">Certificates</text>
+  <text x="940" y="581" class="muted">TLS lifecycle</text>
+
+  <!-- Cloud app -> Key Vault (certs/secrets) -->
+  <path class="arrowThin dash dashThin" d="M750 460 C 750 490, 750 505, 750 520" />
+  <text x="770" y="505" class="label">Secrets</text>
+
+  <!-- Entra / API / SQL -> Audit -->
+  <path class="arrowThin dash" d="M820 180 C 760 260, 720 420, 720 680" />
+  <text x="740" y="310" class="label">Sign-in logs</text>
+
+  <path class="arrowThin dash" d="M1180 530 C 1100 600, 960 650, 960 680" />
+  <text x="1045" y="620" class="label">API logs</text>
+
+  <path class="arrowThin dash" d="M1260 750 C 1200 810, 1080 835, 960 820" />
+  <text x="1120" y="842" class="label">DB audit</text>
+
+  <!-- Legend -->
+  <rect class="callout" x="40" y="70" width="470" height="110" />
+  <text x="60" y="100" class="section">Legend</text>
+  <path class="arrow" d="M70 125 L155 125" />
+  <text x="170" y="129" class="label">Primary data flow</text>
+  <path class="arrowThin dash" d="M70 155 L155 155" />
+  <text x="170" y="159" class="label">Validation / logging / control plane</text>
+  <text x="60" y="180" class="muted">All service-to-service traffic uses TLS (HTTPS and SQL encryption in transit).</text>
 </svg>
 
 
