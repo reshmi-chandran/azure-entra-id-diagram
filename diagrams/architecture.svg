@@ -102,14 +102,14 @@
        =========================== -->
 
   <!-- Users (external actors) -->
-  <rect class="card" x="1080" y="70" width="350" height="140" />
-  <g transform="translate(1105 102)">
+  <rect class="card" x="1080" y="75" width="350" height="140" />
+  <g transform="translate(1105 107)">
     <circle cx="34" cy="24" r="18" fill="#93c5fd"/>
     <path d="M10,78 C14,56 54,56 58,78 L58,88 L10,88 Z" fill="#60a5fa"/>
   </g>
-  <text x="1180" y="110" class="nodeTitle">Users</text>
-  <text x="1180" y="132" class="nodeSub">Employees, partners, service identities</text>
-  <text x="1180" y="154" class="nodeSub">Interactive sign-in and delegated access</text>
+  <text x="1180" y="115" class="nodeTitle">Users</text>
+  <text x="1180" y="137" class="nodeSub">Employees, partners, service identities</text>
+  <text x="1180" y="159" class="nodeSub">Interactive sign-in and delegated access</text>
 
   <!-- ===========================
        On-Prem components
@@ -289,12 +289,12 @@
        =========================== -->
 
   <!-- Users -> Cloud app (access) -->
-  <path class="arrow" d="M1255 210 L1255 250 L750 250 L750 290" />
+  <path class="arrow" d="M1255 215 L1255 250 L750 250 L750 290" />
   <text x="980" y="240" class="label">Access</text>
   <text x="980" y="255" class="muted">HTTPS</text>
 
   <!-- Users -> On-Prem app -->
-  <path class="arrow" d="M1255 210 L1255 250 L255 250 L255 470" />
+  <path class="arrow" d="M1255 215 L1255 250 L255 250 L255 470" />
   <text x="520" y="240" class="label">Use app</text>
 
   <!-- Cloud app -> Entra (authorize) -->
@@ -353,13 +353,13 @@
   <text x="1040" y="812" class="label">DB audit</text>
 
   <!-- Legend -->
-  <rect class="callout" x="40" y="70" width="470" height="110" />
+  <rect class="callout" x="40" y="70" width="470" height="130" />
   <text x="60" y="100" class="section">Legend</text>
   <path class="arrow" d="M70 125 L155 125" />
   <text x="170" y="129" class="label">Primary data flow</text>
   <path class="arrowThin dash" d="M70 155 L155 155" />
   <text x="170" y="159" class="label">Validation / logging / control plane</text>
-  <text x="60" y="180" class="muted">All service-to-service traffic uses TLS (HTTPS and SQL encryption in transit).</text>
+  <text x="60" y="188" class="muted">All service-to-service traffic uses TLS (HTTPS and SQL encryption in transit).</text>
 </svg>
 
 
