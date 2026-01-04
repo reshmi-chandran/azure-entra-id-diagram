@@ -98,18 +98,22 @@
   <text x="520" y="238" class="section">Azure Subscription / Landing Zone</text>
 
   <!-- ===========================
-       On-Prem components
+       External actors
        =========================== -->
 
-  <!-- Users (on-prem / corporate users) -->
-  <rect class="card" x="80" y="290" width="350" height="140" />
-  <g transform="translate(105 322)">
+  <!-- Users (external actors) -->
+  <rect class="card" x="1080" y="70" width="350" height="140" />
+  <g transform="translate(1105 102)">
     <circle cx="34" cy="24" r="18" fill="#93c5fd"/>
     <path d="M10,78 C14,56 54,56 58,78 L58,88 L10,88 Z" fill="#60a5fa"/>
   </g>
-  <text x="180" y="330" class="nodeTitle">Users</text>
-  <text x="180" y="352" class="nodeSub">Employees, partners, service identities</text>
-  <text x="180" y="374" class="nodeSub">Interactive sign-in and delegated access</text>
+  <text x="1180" y="110" class="nodeTitle">Users</text>
+  <text x="1180" y="132" class="nodeSub">Employees, partners, service identities</text>
+  <text x="1180" y="154" class="nodeSub">Interactive sign-in and delegated access</text>
+
+  <!-- ===========================
+       On-Prem components
+       =========================== -->
 
   <!-- On-Prem App / Service -->
   <rect class="card" x="80" y="470" width="350" height="160" />
@@ -285,13 +289,13 @@
        =========================== -->
 
   <!-- Users -> Cloud app (access) -->
-  <path class="arrow" d="M430 360 C 490 360, 510 360, 540 360" />
-  <text x="452" y="345" class="label">Access</text>
-  <text x="452" y="360" class="muted">HTTPS</text>
+  <path class="arrow" d="M1255 210 C 1160 235, 980 265, 750 290" />
+  <text x="1035" y="248" class="label">Access</text>
+  <text x="1035" y="263" class="muted">HTTPS</text>
 
   <!-- Users -> On-Prem app -->
-  <path class="arrow" d="M255 430 C 255 450, 255 460, 255 470" />
-  <text x="270" y="452" class="label">Use app</text>
+  <path class="arrow" d="M1255 210 C 1100 340, 650 420, 255 470" />
+  <text x="760" y="420" class="label">Use app</text>
 
   <!-- Cloud app -> Entra (authorize) -->
   <path class="arrowThin" d="M760 290 C 780 230, 820 200, 880 180" />
