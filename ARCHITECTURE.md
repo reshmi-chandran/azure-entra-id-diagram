@@ -18,6 +18,12 @@ The design uses:
 
 ---
 
+## Architecture Diagram (SVG using Azure icons)
+
+![Azure Entra ID architecture diagram](diagrams/architecture.svg)
+
+---
+
 ## Logical Architecture Diagram (Mermaid)
 
 ```mermaid
